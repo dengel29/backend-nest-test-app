@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ExercisesModule } from './exercises/exercises.module';
 import typeorm from './ormconfig';
 
 @Module({
@@ -16,6 +17,7 @@ import typeorm from './ormconfig';
       useFactory: async (configService: ConfigService) =>
         configService.get('typeorm'),
     }),
+    ExercisesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
