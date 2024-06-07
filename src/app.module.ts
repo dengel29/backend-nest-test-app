@@ -4,6 +4,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ExercisesModule } from './exercises/exercises.module';
+import { EquipmentModule } from './equipment/equipment.module';
+import { BlocksModule } from './blocks/blocks.module';
+import { WorkoutsModule } from './workouts/workouts.module';
 import typeorm from './ormconfig';
 
 @Module({
@@ -18,8 +21,13 @@ import typeorm from './ormconfig';
         configService.get('typeorm'),
     }),
     ExercisesModule,
+    EquipmentModule,
+    BlocksModule,
+    WorkoutsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {}
+}
