@@ -9,6 +9,8 @@ import {
   ManyToMany,
 } from 'typeorm';
 
+type UnsavedBlockExercise = Omit<BlockExercise, 'id' | 'block'>;
+
 @Entity()
 export class Block {
   @PrimaryGeneratedColumn()
@@ -21,6 +23,11 @@ export class Block {
   setCount: number;
 
   @OneToMany(() => BlockExercise, (be) => be.block)
+  blockExercises: BlockExercise[] | UnsavedBlockExercise[];
+
+  @Column({ type: 'varchar', nullable: true })
+  section?: 'warmup' | 'cooldown';
+
   @Column({ type: 'int' })
   order: number;
 }
