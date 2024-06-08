@@ -21,7 +21,8 @@ export class Block {
   setCount: number;
 
   @OneToMany(() => BlockExercise, (be) => be.block)
-  blockExercises: BlockExercise[];
+  @Column({ type: 'int' })
+  order: number;
 }
 
 @Entity()
@@ -46,4 +47,7 @@ export class BlockExercise {
 
   @ManyToMany(() => Workout, (w) => w.blockExercises)
   workouts?: Workout[];
+
+  @Column({ type: 'int' })
+  order: number;
 }
