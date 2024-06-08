@@ -1,4 +1,5 @@
 const mg = [
+  { id: 0, name: 'Full Body' },
   { id: 1, name: 'Chest' },
   { id: 2, name: 'Back' },
   { id: 3, name: 'Shoulders' },
