@@ -15,6 +15,6 @@ export class Equipment {
   @Column({ type: 'varchar', length: 512, nullable: true })
   description?: string;
 
-  @ManyToMany(() => Exercise, (e) => e.equipment, { nullable: true })
+  @ManyToMany(() => Exercise, (e) => e.equipment)
   exercises?: Exercise[];
 }

@@ -1,3 +1,4 @@
+import { Workout } from '../workouts/workout.entity';
 import { Exercise } from '../exercises/exercise.entity';
 import {
   Entity,
@@ -5,6 +6,7 @@ import {
   Column,
   ManyToOne,
   OneToMany,
+  ManyToMany,
 } from 'typeorm';
 
 @Entity()
@@ -41,4 +43,7 @@ export class BlockExercise {
 
   @Column({ type: 'int', nullable: true })
   weight?: number;
+
+  @ManyToMany(() => Workout, (w) => w.blockExercises)
+  workouts?: Workout[];
 }

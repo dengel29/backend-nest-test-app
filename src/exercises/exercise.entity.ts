@@ -4,6 +4,7 @@ import { Muscles } from '../types';
 import {
   Column,
   Entity,
+  JoinTable,
   ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -21,6 +22,17 @@ export class Exercise {
   muscleGroups: Muscles[];
 
   @ManyToMany(() => Equipment, (e) => e.exercises)
+  @JoinTable({
+    name: 'exercise_equipment',
+    joinColumn: {
+      name: 'exercise',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'equipment',
+      referencedColumnName: 'id',
+    },
+  })
   equipment: Equipment[];
 
   @OneToMany(() => BlockExercise, (be) => be.exercise, { nullable: true })
