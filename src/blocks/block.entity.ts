@@ -8,59 +8,82 @@ import {
   OneToMany,
   ManyToMany,
 } from 'typeorm';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 type UnsavedBlockExercise = Omit<BlockExercise, 'id' | 'block'>;
 
+@ObjectType()
 @Entity()
 export class Block {
+  @Field(() => Int)
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column('varchar')
   name: string;
 
+  @Field(() => Int)
   @Column({ type: 'int' })
   setCount: number;
 
+  @Field(() => [BlockExercise])
   @OneToMany(() => BlockExercise, (be) => be.block)
   blockExercises: BlockExercise[] | UnsavedBlockExercise[];
 
+  @Field(() => String, { nullable: true })
   @Column({ type: 'varchar', nullable: true })
   section?: 'warmup' | 'cooldown';
 
+  @Field(() => Int)
   @Column({ type: 'int' })
   order: number;
 }
 
+@ObjectType()
 @Entity()
 export class BlockExercise {
+  @Field(() => Int)
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Field(() => Exercise)
   @ManyToOne(() => Exercise, (e) => e.blockExercises)
   exercise: Exercise;
 
-  @ManyToOne(() => Block, (b) => b.blockExercises)
-  block: number;
+  @Field(() => Int)
+  exerciseId?: number;
 
+  @Field(() => Block)
+  @ManyToOne(() => Block, (b) => b.blockExercises)
+  block: Block;
+
+  @Field(() => Int)
+  blockId?: number;
+
+  @Field(() => Int, { nullable: true })
   @Column({ type: 'int', nullable: true })
   repBase?: number;
 
+  @Field(() => Int, { nullable: true })
   @Column({ type: 'int', nullable: true })
   repMax?: number;
 
+  @Field(() => Int, { nullable: true })
   @Column({ type: 'int', nullable: true })
   durationBase?: number;
 
+  @Field(() => Int, { nullable: true })
   @Column({ type: 'int', nullable: true })
   durationMax?: number;
 
+  @Field(() => Int, { nullable: true })
   @Column({ type: 'int', nullable: true })
   weight?: number;
 
   @ManyToMany(() => Workout, (w) => w.blockExercises)
   workouts?: Workout[];
 
+  @Field(() => Int)
   @Column({ type: 'int' })
   order: number;
 }
