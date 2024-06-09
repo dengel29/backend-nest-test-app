@@ -8,7 +8,7 @@ export default class WorkoutsSeed implements Seeder {
     const workoutRepository = dataSource.getRepository(Workout);
     const blockExerciseRepository = dataSource.getRepository(BlockExercise);
     const blockExercises = await blockExerciseRepository.find();
-    const workout: Omit<Workout, 'id'> = {
+    const workout: Omit<Workout, 'id' | 'blocks'> = {
       trainerName: 'Candice',
       bodyFocus: ['Full Body'],
       duration: 65,

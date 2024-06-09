@@ -5,17 +5,17 @@ import { Exercise } from '../../exercises/exercise.entity';
 
 type UnsavedBlockExercise = Omit<BlockExercise, 'id' | 'block'>;
 
-export default class ExerciseSeed implements Seeder {
+export default class BlockSeed implements Seeder {
   public async run(dataSource: DataSource): Promise<void> {
     const exercisesRepository = dataSource.getRepository(Exercise);
     const blockRepository = dataSource.getRepository(Block);
     const blockExerciseRepository = dataSource.getRepository(BlockExercise);
 
     // block one: warm up: 2 sets  barbell lunge l -> r // 6-8 reps // 5kg
-    const barbellL = await exercisesRepository.findOneBy({
+    const barbellL = await exercisesRepository.findOneByOrFail({
       name: 'Barbell Lunge (L)',
     });
-    const barbellR = await exercisesRepository.findOneBy({
+    const barbellR = await exercisesRepository.findOneByOrFail({
       name: 'Barbell Lunge (R)',
     });
 
@@ -45,10 +45,10 @@ export default class ExerciseSeed implements Seeder {
       blockExercises: [bbL, bbR],
     };
 
-    await blockRepository.save(blockOne);
+    // await blockRepository.save(blockOne);
 
     // block two: warm up: 2 sets sumo deadlift // 10 reps // 45kg
-    const sumo = await exercisesRepository.findOneBy({
+    const sumo = await exercisesRepository.findOneByOrFail({
       name: 'Sumo Deadlift',
     });
 
@@ -69,13 +69,13 @@ export default class ExerciseSeed implements Seeder {
       blockExercises: [s],
     };
 
-    await blockRepository.save(blockTwo);
+    // await blockRepository.save(blockTwo);
 
     // block three: 3 sets cable kickback l -> r
-    const cableKickL = await exercisesRepository.findOneBy({
+    const cableKickL = await exercisesRepository.findOneByOrFail({
       name: 'Cable Kickback (L)',
     });
-    const cableKickR = await exercisesRepository.findOneBy({
+    const cableKickR = await exercisesRepository.findOneByOrFail({
       name: 'Cable Kickback (R)',
     });
 
@@ -100,7 +100,7 @@ export default class ExerciseSeed implements Seeder {
       blockExercises: [ckL, ckR],
     };
 
-    await blockRepository.save(blockThree);
+    // await blockRepository.save(blockThree);
 
     // block four; 4 sets sumo deadlift // 4 sets // 10-12 reps // 90kg
     const s2: UnsavedBlockExercise = {
@@ -120,10 +120,10 @@ export default class ExerciseSeed implements Seeder {
       blockExercises: [s2],
     };
 
-    await blockRepository.save(blockFour);
+    // await blockRepository.save(blockFour);
 
     // block five; 4 sets dumbbell shoulder press // 8 reps // 18-25kg
-    const shoulderPress = await exercisesRepository.findOneBy({
+    const shoulderPress = await exercisesRepository.findOneByOrFail({
       name: 'Dumbbell Shoulder Press',
     });
 
@@ -143,18 +143,18 @@ export default class ExerciseSeed implements Seeder {
       blockExercises: [sp],
     };
 
-    await blockRepository.save(blockFive);
+    // await blockRepository.save(blockFive);
 
     // block six: 4 sets single arm cable row l -> r // 10 - 12 reps, cable seated row // 6-8 reps
-    const cableRowL = await exercisesRepository.findOneBy({
+    const cableRowL = await exercisesRepository.findOneByOrFail({
       name: 'Single Arm Cable Row (L)',
     });
 
-    const cableRowR = await exercisesRepository.findOneBy({
+    const cableRowR = await exercisesRepository.findOneByOrFail({
       name: 'Single Arm Cable Row (R)',
     });
 
-    const seatedRow = await exercisesRepository.findOneBy({
+    const seatedRow = await exercisesRepository.findOneByOrFail({
       name: 'Cable Seated Row',
     });
 
@@ -188,18 +188,18 @@ export default class ExerciseSeed implements Seeder {
       blockExercises: [crL, crR, csr],
     };
 
-    await blockRepository.save(blockSix);
+    // await blockRepository.save(blockSix);
 
     // block seven: 1 set dumbbell squat jump 1 rep -> barbell lunge 1 rep -> plank with stability ball -> glute bridge hold
-    const jumpSquat = await exercisesRepository.findOneBy({
+    const jumpSquat = await exercisesRepository.findOneByOrFail({
       name: 'Dumbbell Jump Squat',
     });
 
-    const plank = await exercisesRepository.findOneBy({
+    const plank = await exercisesRepository.findOneByOrFail({
       name: 'Plank With Stability Ball',
     });
 
-    const bridge = await exercisesRepository.findOneBy({
+    const bridge = await exercisesRepository.findOneByOrFail({
       name: 'Glute Bridge Hold',
     });
 
@@ -238,16 +238,16 @@ export default class ExerciseSeed implements Seeder {
       blockExercises: [js, bbL2, plk, brd],
     };
 
-    await blockRepository.save(blockSeven);
+    // await blockRepository.save(blockSeven);
 
-    // await blockRepository.save([
-    //   blockOne,
-    //   blockTwo,
-    //   blockThree,
-    //   blockFour,
-    //   blockFive,
-    //   blockSix,
-    //   blockSeven,
-    // ]);
+    await blockRepository.save([
+      blockOne,
+      blockTwo,
+      blockThree,
+      blockFour,
+      blockFive,
+      blockSix,
+      blockSeven,
+    ]);
   }
 }

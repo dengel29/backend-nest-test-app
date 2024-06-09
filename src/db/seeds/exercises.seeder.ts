@@ -46,13 +46,13 @@ export default class ExerciseSeed implements Seeder {
     const exercises = [
       {
         id: 0,
-        name: 'Barbell Lunge',
+        name: 'Barbell Lunge (L)',
         side: 'L',
         muscleGroups: findMuscle(muscles, [11]),
       },
       {
         id: 1,
-        name: 'Barbell Lunge',
+        name: 'Barbell Lunge (R)',
         side: 'R',
         muscleGroups: findMuscle(muscles, [11]),
       },
@@ -64,7 +64,13 @@ export default class ExerciseSeed implements Seeder {
       },
       {
         id: 3,
-        name: 'Cable Kickback',
+        name: 'Cable Kickback (L)',
+        side: null,
+        muscleGroups: findMuscle(muscles, [11, 10]),
+      },
+      {
+        id: 33,
+        name: 'Cable Kickback (R)',
         side: null,
         muscleGroups: findMuscle(muscles, [11, 10]),
       },
@@ -76,25 +82,25 @@ export default class ExerciseSeed implements Seeder {
       },
       {
         id: 5,
-        name: 'Single Arm Cable Row',
+        name: 'Single Arm Cable Row (L)',
         side: 'L',
         muscleGroups: findMuscle(muscles, [5, 14]),
       },
       {
         id: 6,
-        name: 'Single Arm Cable Row',
+        name: 'Single Arm Cable Row (R)',
         side: 'R',
         muscleGroups: findMuscle(muscles, [5, 14]),
       },
       {
         id: 7,
-        name: 'Single Arm Barbell Row',
+        name: 'Single Arm Barbell Row (L)',
         side: 'L',
         muscleGroups: findMuscle(muscles, [5, 14]),
       },
       {
         id: 8,
-        name: 'Single Arm Barbell Row',
+        name: 'Single Arm Barbell Row (R)',
         side: 'R',
         muscleGroups: findMuscle(muscles, [5, 14]),
       },
@@ -106,19 +112,19 @@ export default class ExerciseSeed implements Seeder {
       },
       {
         id: 10,
-        name: 'Dumbbell Jump Squat ',
+        name: 'Dumbbell Jump Squat',
         side: null,
         muscleGroups: findMuscle(muscles, [9, 11]),
       },
       {
         id: 10,
-        name: 'Plank With Stability Ball ',
+        name: 'Plank With Stability Ball',
         side: null,
         muscleGroups: findMuscle(muscles, [8, 20, 7]),
       },
       {
         id: 11,
-        name: 'Glute Bridge Hold ',
+        name: 'Glute Bridge Hold',
         side: null,
         muscleGroups: findMuscle(muscles, [11]),
       },
