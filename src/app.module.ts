@@ -25,11 +25,14 @@ import typeorm from './ormconfig';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
-      include: [ExercisesModule],
+      include: [ExercisesModule, WorkoutsModule, BlocksModule],
+      buildSchemaOptions: {
+        numberScalarMode: 'integer',
+      },
     }),
+    BlocksModule,
     ExercisesModule,
     EquipmentModule,
-    BlocksModule,
     WorkoutsModule,
   ],
   controllers: [AppController],
