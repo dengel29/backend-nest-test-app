@@ -1,0 +1,63 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Workout {
+  id: Int!
+  trainerName: String
+  duration: Int
+  instructions: String
+  bodyFocus: [String!]!
+  blocks: [Block!]!
+}
+
+type Block {
+  id: Int!
+  setCount: Int!
+  blockExercises: [BlockExercise!]!
+  section: String
+  order: Int!
+}
+
+type BlockExercise {
+  id: Int!
+  exercise: Exercise!
+  exerciseId: Int!
+  block: Block!
+  blockId: Int!
+  repBase: Int
+  repMax: Int
+  durationBase: Int
+  durationMax: Int
+  weight: Int
+  order: Int!
+
+  """This is a blockExercise id"""
+  swappedForBlockExerciseId: Int
+}
+
+type Exercise {
+  id: Int!
+  name: String!
+  muscleGroups: [String!]!
+  blockExercises: [BlockExercise!]!
+  info: String
+}
+
+type Query {
+  workout(id: Int!): Workout!
+  block(workoutId: Int!): [Block!]!
+  exercise(id: Int!): Exercise!
+}
+
+type Mutation {
+  replaceExercise(input: ReplaceExerciseInput!): Workout!
+}
+
+input ReplaceExerciseInput {
+  workoutId: Int!
+  blockExerciseId: Int!
+  fromBlockId: Int!
+  fromOrder: Int!
+  swappedForBlockExerciseId: Int
+}
