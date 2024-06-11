@@ -15,9 +15,9 @@ export class BlocksService {
       .leftJoinAndSelect('be.exercise', 'exercise')
       .leftJoin('workout_block_exercise', 'wbe', 'be.id = wbe."block_exercise"')
       .where('wbe."workout" = :workoutId', { workoutId })
+      .orderBy('block.order', 'ASC')
       .getMany();
 
-    console.log(workout);
     return workout;
   }
 }
