@@ -45,8 +45,28 @@ export class WorkoutsResolver {
   }
 
   @ResolveField('blocks', () => [Block])
-  async posts(@Parent() workout: Workout) {
+  async blocks(@Parent() workout: Workout) {
     const { id } = workout;
     return this.blockService.findAllInWorkout({ workoutId: id });
+  }
+
+  @Mutation(() => Workout)
+  async replaceExercise(
+    @Args('input') replaceExerciseData: ReplaceExerciseInput,
+  ) {
+    let swapId;
+
+    const { workoutId, blockExerciseId, fromBlockId, fromOrder } =
+      replaceExerciseData;
+    if (replaceExerciseData.swappedForBlockExerciseId) {
+      swapId = replaceExerciseData.swappedForBlockExerciseId;
+    }
+    return this.workoutsService.replaceExercise({
+      workoutId,
+      blockExerciseId,
+      fromBlockId,
+      fromOrder,
+      swappedForBlockExerciseId: swapId,
+    });
   }
 }

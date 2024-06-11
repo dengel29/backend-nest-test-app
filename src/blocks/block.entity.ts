@@ -51,6 +51,7 @@ export class BlockExercise {
   exercise: Exercise;
 
   @Field(() => Int)
+  @Column({ type: 'int', nullable: true })
   exerciseId?: number;
 
   @Field(() => Block)
@@ -58,6 +59,7 @@ export class BlockExercise {
   block: Block;
 
   @Field(() => Int)
+  @Column({ type: 'int', nullable: false })
   blockId?: number;
 
   @Field(() => Int, { nullable: true })
@@ -86,4 +88,11 @@ export class BlockExercise {
   @Field(() => Int)
   @Column({ type: 'int' })
   order: number;
+
+  @Field(() => Int, {
+    nullable: true,
+    description: 'This is a blockExercise id',
+  })
+  @Column({ type: 'int', nullable: true })
+  swappedForBlockExerciseId?: number;
 }
