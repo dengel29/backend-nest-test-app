@@ -194,6 +194,7 @@ Response to Example Query
           ]
         },
         ...
+      ]
     }
   }
 }
