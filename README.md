@@ -33,3 +33,10 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+
+After completing changes to a *.entity.ts file, run:
+`npm run typeorm migration:generate -- -d ./src/ormconfig.ts MigrationName`
+
+After a migration is completed, drag to the `src/db/migrations` folder and run:
+`npm run typeorm migration:run -- -d ./src/ormconfig.ts`
