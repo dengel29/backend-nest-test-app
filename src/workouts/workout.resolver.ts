@@ -4,12 +4,33 @@ import { Workout } from './workout.entity';
 import { WorkoutsService } from './workouts.service';
 import {
   Args,
+  Field,
+  InputType,
   Int,
+  Mutation,
   Parent,
   Query,
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
+
+@InputType()
+export class ReplaceExerciseInput {
+  @Field(() => Int!)
+  workoutId: number;
+
+  @Field(() => Int!)
+  blockExerciseId: number;
+
+  @Field(() => Int!)
+  fromBlockId: number;
+
+  @Field(() => Int!)
+  fromOrder: number;
+
+  @Field(() => Int, { nullable: true })
+  swappedForBlockExerciseId?: number;
+}
 
 @Resolver(() => Workout)
 export class WorkoutsResolver {
